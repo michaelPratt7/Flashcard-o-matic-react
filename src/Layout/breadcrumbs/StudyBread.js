@@ -1,7 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
 
-function StudyView() {
+function StudyBread({deck}) {
     return (
 <nav aria-label="breadcrumb">
     <ol className="breadcrumb">
@@ -9,7 +9,7 @@ function StudyView() {
         <Link to= "/" className="btn btn-link" >Home</Link>
       </li>
       <li className="breadcrumb-item">
-        <Link to= {`/decks/${deckId}`} className="btn btn-link" >{deck.name}</Link>
+        <Link to= {`/decks/${deck.id}`} className="btn btn-link" >{deck.name}</Link>
     </li>
       <li className="breadcrumb-item">
         <p>Study</p>
@@ -18,4 +18,4 @@ function StudyView() {
   </nav>
 )}
 
-export default StudyView;
+export default StudyBread;

@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import {useParams} from "react-router-dom";
-import StudyView from "../breadcrumbs/StudyView";
+import StudyBread from "../breadcrumbs/StudyBread";
 import {readDeck} from "../../utils/api";
 
 function StudyDeck() {
@@ -16,8 +16,9 @@ function StudyDeck() {
 
 return (
     <section>
-        <StudyView />
+        <StudyBread deck={deck} />
         <h1>Study: {deck.name}</h1>
+        
     </section>
 )
 }
