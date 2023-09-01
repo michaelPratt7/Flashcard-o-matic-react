@@ -21,8 +21,8 @@ function Layout() {
           <Route path="/decks/new">
             <CreateDeck />
           </Route>
+          <NotFound />
           </Switch>
-        <NotFound path='*' />
       </div>
     </>
   );
