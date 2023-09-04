@@ -16,7 +16,7 @@ export function Home() {
         <Route exact path="/">
             <DeckList />
         </Route> 
-        </>  
+        </>
     )
 }
 
