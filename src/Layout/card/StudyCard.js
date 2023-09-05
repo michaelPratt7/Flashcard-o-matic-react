@@ -2,7 +2,7 @@ import React from "react";
 
 function StudyCard({deck}) {
    return (
-    <div>{deck.cards}</div>
+    <div>{deck.name}</div>
     
    )
    
