@@ -3,6 +3,7 @@ import {useParams, useHistory} from "react-router-dom";
 import StudyBread from "../breadcrumbs/StudyBread";
 import {readDeck} from "../../utils/api";
 import StudyCard from "../card/StudyCard";
+import AddCardButton from "../card/AddCardButton";
 
 function StudyDeck() {
    const [deck, setDeck] = useState([]);
@@ -11,6 +12,7 @@ function StudyDeck() {
    const [deckLength, setDeckLength] = useState(0);
    const [currentPos, setCurrentPos] = useState(1);
    const {deckId} = useParams();
+   const history = useHistory();
    
 
    
@@ -33,7 +35,6 @@ const FlipHandler = () => {
 }
 
 const NextCardHandler = () => {
-    const history = useHistory();
     setCurrentPos(currentPos + 1)
     setIsFlipped(!isFlipped)
     if (currentPos !== deckLength) setCard(deck.cards[currentPos])
@@ -41,7 +42,7 @@ const NextCardHandler = () => {
         const result = window.confirm("Restart Cards?", "Click 'cancel' to return to home page");
         if (!result) history.push("/");
         else {
-            setCard(deck.cards[0]);
+            setCard(deck.cards[1]);
             setCurrentPos(1);
             setIsFlipped(false);
         } 
@@ -56,13 +57,12 @@ return (
         <div>
            <p>Card {currentPos} of {deckLength}</p>
            <div className="cards"> 
-           {deckLength > 2 && <StudyCard card={card}
-                                        deck={deck} 
-                                        isFlipped={isFlipped} 
-                                        FlipHandler={FlipHandler} 
-                                        NextCardHandler={NextCardHandler}
-                                        currentPos={currentPos}
-                                        deckLength={deckLength} />}
+           {deckLength > 2 && <StudyCard card={card} isFlipped={isFlipped} FlipHandler={FlipHandler} NextCardHandler={NextCardHandler} />}
+           {deckLength <= 2 && <>
+           <h1>Not enough cards</h1> 
+           <p>You need at least 3 cards to study. There are {deckLength} cards in this deck.</p>
+           <AddCardButton />
+           </>}
            </div>
            
         </div>
