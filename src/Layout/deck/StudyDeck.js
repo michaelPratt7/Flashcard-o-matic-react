@@ -48,12 +48,6 @@ const NextCardHandler = () => {
     }
 }
 
-function NextButton() {
-    return (
-        <button onClick={NextCardHandler}>Next</button>
-    )
-}
-
 
 return (
     <section>
@@ -61,9 +55,10 @@ return (
         <h1>Study: {deck.name}</h1>
         <div>
            <p>Card {currentPos} of {deckLength}</p>
-           <div>{isFlipped ? card.front: card.back}</div>
-           <button onClick={FlipHandler}>Flip</button>
-           {!isFlipped && <NextButton />}
+           <div className="cards"> 
+           {deckLength > 2 && <StudyCard card={card} />}
+           </div>
+           
         </div>
         
     </section>

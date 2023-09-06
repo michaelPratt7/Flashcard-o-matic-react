@@ -1,9 +1,12 @@
 import React from "react";
 
-function StudyCard({deck}) {
+function StudyCard({deck, card, isFlipped, FlipHandler, NextCardHandler, currentPos, deckLength }) {
    return (
-    <div>{deck.name}</div>
-    
+      <>
+      <div>{!isFlipped ? card.front : card.back}</div>
+      <button onClick={FlipHandler}>Flip</button>
+      {isFlipped && <button onClick={NextCardHandler}>Next</button>}
+      </>
    )
    
     
