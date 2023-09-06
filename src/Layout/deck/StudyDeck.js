@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import {useParams} from "react-router-dom";
+import {useParams, useHistory} from "react-router-dom";
 import StudyBread from "../breadcrumbs/StudyBread";
 import {readDeck} from "../../utils/api";
 import StudyCard from "../card/StudyCard";
@@ -11,6 +11,7 @@ function StudyDeck() {
    const [deckLength, setDeckLength] = useState(0);
    const [currentPos, setCurrentPos] = useState(1);
    const {deckId} = useParams();
+   
 
    
    useEffect(() => {
@@ -26,8 +27,31 @@ function StudyDeck() {
     return () => abortController.abort();
 }, [deckId]);
 
-const flipHandler = () => {
+const FlipHandler = () => {
     setIsFlipped(!isFlipped)
+   
+}
+
+const NextCardHandler = () => {
+    const history = useHistory();
+    setCurrentPos(currentPos + 1)
+    setIsFlipped(!isFlipped)
+    if (currentPos !== deckLength) setCard(deck.cards[currentPos])
+    else {
+        const result = window.confirm("Restart Cards?", "Click 'cancel' to return to home page");
+        if (!result) history.push("/");
+        else {
+            setCard(deck.cards[0]);
+            setCurrentPos(1);
+            setIsFlipped(false);
+        } 
+    }
+}
+
+function NextButton() {
+    return (
+        <button onClick={NextCardHandler}>Next</button>
+    )
 }
 
 
@@ -35,7 +59,12 @@ return (
     <section>
         <StudyBread deck={deck} />
         <h1>Study: {deck.name}</h1>
-        <StudyCard deck={deck} />
+        <div>
+           <p>Card {currentPos} of {deckLength}</p>
+           <div>{isFlipped ? card.front: card.back}</div>
+           <button onClick={FlipHandler}>Flip</button>
+           {!isFlipped && <NextButton />}
+        </div>
         
     </section>
 )
