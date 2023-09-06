@@ -56,7 +56,13 @@ return (
         <div>
            <p>Card {currentPos} of {deckLength}</p>
            <div className="cards"> 
-           {deckLength > 2 && <StudyCard card={card} />}
+           {deckLength > 2 && <StudyCard card={card}
+                                        deck={deck} 
+                                        isFlipped={isFlipped} 
+                                        FlipHandler={FlipHandler} 
+                                        NextCardHandler={NextCardHandler}
+                                        currentPos={currentPos}
+                                        deckLength={deckLength} />}
            </div>
            
         </div>
