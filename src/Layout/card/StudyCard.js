@@ -5,7 +5,7 @@ function StudyCard({deck, card, isFlipped, FlipHandler, NextCardHandler, current
       <>
       <div>{!isFlipped ? card.front : card.back}</div>
       <button onClick={FlipHandler}>Flip</button>
-      {isFlipped && <button onClick={NextCardHandler}>Next</button>}
+      {isFlipped && (<button onClick={NextCardHandler}>Next</button>)}
       </>
    )
    
