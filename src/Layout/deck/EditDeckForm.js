@@ -11,18 +11,9 @@ function EditDeckForm({deck}) {
     }
 
 
-    const [formData, setFormData] = useState({
-        name: "",
-        description: "",
-    });
+    const [formData, setFormData] = useState(deck);
 
-    useEffect(() => {
-        const abortController = new AbortController();
-        readDeck(deck.id, abortController.signal).then(setFormData);
     
-        return () => abortController.abort();
-    }, [deck.id]);
-
     const handleFormChange = (event) => {
         setFormData({
             ...formData,
