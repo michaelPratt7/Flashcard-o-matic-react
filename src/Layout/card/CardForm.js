@@ -42,7 +42,7 @@ function CardForm({deck}) {
         <form onSubmit={handleFormSubmit}>
             <table>
                 <td htmlFor="front">
-                    Name
+                    Front
                     <textarea
                     id="front"
                     name="front"
@@ -52,7 +52,7 @@ function CardForm({deck}) {
                     />
                 </td>
                 <td htmlFor="back">
-                    Description
+                    Back
                     <textarea
                      id="back"
                      name="back"
@@ -62,8 +62,8 @@ function CardForm({deck}) {
                      />
                 </td>
             </table>
-            <Link to={`/decks/${deck.id}`}><button OnClick={handleHomeClick}>Cancel</button></Link>
-            <button type="submit">Submit</button>
+            <Link to={`/decks/${deck.id}`}><button OnClick={handleHomeClick}>Done</button></Link>
+            <button type="submit">Save</button>
         </form>
     )
 }
