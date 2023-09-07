@@ -30,7 +30,7 @@ function AddCard() {
 return (
     <section>
         <AddCardBread deck={deck} />
-        <h1>Create Deck</h1>
+        <h1>{deck.name}: Add Card</h1>
         <CardForm deck={deck} />
     </section>
 )

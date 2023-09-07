@@ -7,7 +7,7 @@ import StudyDeck from "./deck/StudyDeck";
 import CreateDeck from "./deck/CreateDeck";
 import ViewDeck from "./deck/ViewDeck";
 import EditDeck from "./deck/EditDeck";
-import AddCard from "./card/CardForm";
+import AddCard from "./card/AddCard";
 import EditCard from "./card/EditCard";
 
 function Layout() {
