@@ -34,7 +34,6 @@ function Layout() {
           <Route path="/decks/:deckId">
             <ViewDeck />
           </Route>
-          
           <Route path="/decks/:deckId/cards/:cardId/edit">
             <EditCard />
           </Route>

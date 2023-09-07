@@ -38,24 +38,24 @@ function CardForm({deck}) {
     return (
         <form onSubmit={handleFormSubmit}>
             <table>
-                <td htmlFor="name">
+                <td htmlFor="front">
                     Name
-                    <input
-                    id="name"
-                    name="name"
+                    <textarea
+                    id="front"
+                    name="front"
                     type="text"
                     onChange={handleFormChange}
-                    value={formData.name}
+                    value={formData.front}
                     />
                 </td>
-                <td htmlFor="description">
+                <td htmlFor="back">
                     Description
                     <textarea
-                     id="description"
-                     name="description"
+                     id="back"
+                     name="back"
                      type="text"
                      onChange={handleFormChange}
-                     value={formData.description}
+                     value={formData.back}
                      />
                 </td>
             </table>
