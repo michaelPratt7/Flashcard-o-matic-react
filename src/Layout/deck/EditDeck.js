@@ -15,11 +15,6 @@ function EditDeck() {
         return () => abortController.abort();
     }, [deckId]);
 
-
-   
-
-
-
     return (
         <>
         <EditDeckBread deck={deck} />

@@ -12,13 +12,9 @@ function AddCard() {
     useEffect(() => {
         async function fetchData() {
             const abortController = new AbortController();
-            try {
                 const response = await readDeck(deckId, abortController.signal);
                 console.log("response = ",response)
                 setDeck(response);
-            } catch (error) {
-                console.error("Something went wrong", error);
-            }
             return () => {
                 abortController.abort();
             };
