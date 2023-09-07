@@ -34,7 +34,7 @@ function CardForm({deck}) {
 
     const handleFormSubmit = (event) => {
         event.preventDefault();
-        createCard(formData)
+        createCard(deck.id, formData)
         setFormData({...initialFormState})
         
     }

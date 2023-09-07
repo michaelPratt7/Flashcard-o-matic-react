@@ -5,7 +5,7 @@ import EditDeckBread from "../breadcrumbs/EditDeckBread";
 import EditDeckForm from "./EditDeckForm";
 
 function EditDeck() {
-    const [deck, setDeck] = useState([]);
+    const [deck, setDeck] = useState({});
     const {deckId} = useParams();
     
     useEffect(() => {
