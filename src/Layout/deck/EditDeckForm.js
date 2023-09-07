@@ -13,6 +13,9 @@ function EditDeckForm({deck}) {
 
     const [formData, setFormData] = useState(deck);
 
+    useEffect(() => {
+        setFormData(deck);
+      }, [deck]);
     
     const handleFormChange = (event) => {
         setFormData({

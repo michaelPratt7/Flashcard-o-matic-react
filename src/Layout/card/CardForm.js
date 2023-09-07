@@ -17,14 +17,10 @@ function CardForm({deck}) {
 
     const [formData, setFormData] = useState({...initialFormState});
 
-
     useEffect(() => {
-        const abortController = new AbortController();
-        readDeck(deck.id, abortController.signal).then(setFormData);
+        setFormData(deck);
+      }, [deck]);
     
-        return () => abortController.abort();
-    }, [deck.id]);
-
     const handleFormChange = (event) => {
         setFormData({
             ...formData,
