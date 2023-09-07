@@ -9,11 +9,13 @@ function CardForm({deck}) {
         history.push("/decks/:deckId");
     }
 
-
-    const [formData, setFormData] = useState({
+    const initialFormState = {
         front: "",
         back: "",
-    });
+    }
+
+    const [formData, setFormData] = useState({...initialFormState});
+
 
     useEffect(() => {
         const abortController = new AbortController();
@@ -32,6 +34,7 @@ function CardForm({deck}) {
     const handleFormSubmit = (event) => {
         event.preventDefault();
         createCard(formData)
+        setFormData({...initialFormState})
         
     }
 
