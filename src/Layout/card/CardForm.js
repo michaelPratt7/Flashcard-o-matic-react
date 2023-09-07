@@ -4,6 +4,7 @@ import { readDeck } from "../../utils/api";
 import { createCard } from "../../utils/api";
 
 function CardForm({deck}) {
+    console.log("deck = ",deck)
     const history = useHistory();
     function handleHomeClick() {
         history.push("/decks/:deckId");
