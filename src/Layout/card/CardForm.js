@@ -28,8 +28,10 @@ function CardForm({deck}) {
 
     const handleFormSubmit = (event) => {
         event.preventDefault();
-        createCard(deck.id, formData)
+        const abortController = new AbortController();
+        createCard(deck.id, {formData}, abortController.signal)
         setFormData({...initialFormState})
+        
         
     }
 

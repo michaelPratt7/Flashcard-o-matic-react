@@ -13,14 +13,13 @@ function AddCard() {
         async function fetchData() {
             const abortController = new AbortController();
                 const response = await readDeck(deckId, abortController.signal);
-                console.log("response = ",response)
                 setDeck(response);
             return () => {
                 abortController.abort();
             };
         }
         fetchData();
-    }, []);
+    }, [deckId]);
 
 
 return (

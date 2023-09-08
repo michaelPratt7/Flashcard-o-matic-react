@@ -24,9 +24,11 @@ function DeckForm() {
 
     const handleFormSubmit = (event) => {
         event.preventDefault();
-        createDeck(formData);
+        createDeck(formData).then((newDeck) =>
+        history.push(`/decks/${newDeck.id}`))
         setFormData({...initialFormState})
-        history.push(`/decks/${formData.id}`)
+    
+    
     }
 
     

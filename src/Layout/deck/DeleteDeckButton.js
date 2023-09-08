@@ -8,8 +8,8 @@ function DeleteDeckButton({deck}) {
         const result = window.confirm("Are you sure you want to delete this deck?");
         if (result) {
           await deleteDeck(deck.id);
-          history.push("/");
         }
+        history.push("/");
     }
     return (
         <button className="btn btn-danger" onClick={handleDelete}>
