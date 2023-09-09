@@ -40,7 +40,6 @@ function EditCard() {
         updateCard(card);
       };
 
-
     return (
         <>
         <EditCardBread deck={deck} card={card} />
