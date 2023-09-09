@@ -36,7 +36,6 @@ function EditCard() {
 
     const handleFormSubmit = (event) => {
         event.preventDefault();
-        setCard()
         updateCard(card);
       };
 
