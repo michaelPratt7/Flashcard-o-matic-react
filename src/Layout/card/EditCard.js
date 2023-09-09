@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {useParams} from "react-router-dom";
+import {useParams, useHistory} from "react-router-dom";
 import { readDeck, readCard, updateCard } from "../../utils/api";
 import EditCardBread from "../breadcrumbs/EditCardBread";
 import CardForm from "./CardForm";
@@ -11,6 +11,7 @@ function EditCard() {
     const [back, setBack] = useState(""); 
     const {deckId} = useParams();
     const {cardId} = useParams();
+    const history = useHistory();
     
     useEffect(() => {
         const abortController = new AbortController();
@@ -27,16 +28,17 @@ function EditCard() {
         async function getCard(){
             const _card = await readCard(cardId, abortController.signal);
             setCard(_card);
-            setFront(_card.front);
-            setBack(_card.back);
+            
         }
         getCard()
         return () => abortController.abort();
     }, [cardId]);
 
-    const handleFormSubmit = (event) => {
+    const handleFormSubmit = async (event) => {
         event.preventDefault();
-        updateCard(card);
+        console.log('Save button clicked');
+        await updateCard(card);
+        history.push(`/decks/${deck.id}`);
       };
 
     return (
@@ -44,6 +46,7 @@ function EditCard() {
         <EditCardBread deck={deck} card={card} />
         <h1>EditCard</h1>
         <CardForm deck={deck}
+                  card={card}
                   front={front}
                   back={back}
                   setFront={setFront}

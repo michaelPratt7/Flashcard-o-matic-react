@@ -3,6 +3,7 @@ import {useHistory} from "react-router-dom";
 
 function CardForm({
     deck,
+    card,
     front,
     setFront,
     back,
@@ -26,7 +27,7 @@ function CardForm({
                     className="front"
                     type="text"
                     onChange={handleFrontChange}
-                    value={front}
+                    value={card.front}
                     />
                 </td>
                 <td htmlFor="back">
@@ -36,7 +37,7 @@ function CardForm({
                      className="back"
                      type="text"
                      onChange={handleBackChange}
-                     value={back}
+                     value={card.back}
                      />
                 </td>
             </table>

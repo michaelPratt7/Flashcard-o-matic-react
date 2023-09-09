@@ -9,6 +9,7 @@ function AddCard() {
     const [deck, setDeck] = useState([]);
     const [front, setFront] = useState("");
     const [back, setBack] = useState("");
+    const [card, setCard] = useState({front:"", back:"",});
     const {deckId} = useParams();
     
     useEffect(() => {
@@ -21,12 +22,9 @@ function AddCard() {
         return () => abortController.abort();
     }, [deckId]);
 
-    const handleFormSubmit = (event) => {
+    const handleFormSubmit = async (event) => {
         event.preventDefault();
-        createCard(deckId, {
-          front: front,
-          back: back,
-        });
+        await createCard(deckId, card);
         setFront("");
         setBack("");
       };
@@ -37,6 +35,7 @@ return (
         <AddCardBread deck={deck} />
         <h1>{deck.name}: Add Card</h1>
         <CardForm deck={deck}
+                  card={card}
                   front={front}
                   back={back}
                   setFront={setFront}
