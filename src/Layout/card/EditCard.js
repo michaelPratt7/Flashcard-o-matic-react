@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from "react";
-import {useParams, Link} from "react-router-dom";
-import { readDeck, readCard } from "../../utils/api";
+import {useParams} from "react-router-dom";
+import { readDeck, readCard, updateCard } from "../../utils/api";
 import EditCardBread from "../breadcrumbs/EditCardBread";
-import EditCardForm from "./EditCardForm";
+import CardForm from "./CardForm";
 
 function EditCard() {
     const [deck, setDeck] = useState({});
     const [card, setCard] = useState({});
+    const [front, setFront] = useState("");
+    const [back, setBack] = useState(""); 
     const {deckId} = useParams();
     const {cardId} = useParams();
     
-
     useEffect(() => {
         const abortController = new AbortController();
         async function getDeck() {
@@ -26,16 +27,30 @@ function EditCard() {
         async function getCard(){
             const _card = await readCard(cardId, abortController.signal);
             setCard(_card);
+            setFront(_card.front);
+            setBack(_card.back);
         }
         getCard()
         return () => abortController.abort();
     }, [cardId]);
 
+    const handleFormSubmit = (event) => {
+        event.preventDefault();
+        setCard()
+        updateCard(card);
+      };
+
+
     return (
         <>
         <EditCardBread deck={deck} card={card} />
         <h1>EditCard</h1>
-        <EditCardForm deck={deck} card={card} />
+        <CardForm deck={deck}
+                  front={front}
+                  back={back}
+                  setFront={setFront}
+                  setBack={setBack}
+                  handleFormSubmit={handleFormSubmit} />
         </>
 
     )

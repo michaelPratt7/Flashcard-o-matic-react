@@ -1,39 +1,20 @@
-import React, { useState, useEffect } from "react";
-import {useHistory, Link} from "react-router-dom";
-import { createCard } from "../../utils/api";
+import React from "react";
+import {useHistory} from "react-router-dom";
 
-function CardForm({deck}) {
+function CardForm({
+    deck,
+    front,
+    setFront,
+    back,
+    setBack,
+    handleFormSubmit,
+}) {
+
     const history = useHistory();
-    function handleHomeClick() {
-        history.push("/decks/:deckId");
-    }
 
-    const initialFormState = {
-        front: "",
-        back: "",
-    }
+    const handleFrontChange = ({target}) => setFront(target.value);
+    const handleBackChange = ({target}) => setBack(target.value);
 
-    const [formData, setFormData] = useState({...initialFormState});
-
-    useEffect(() => {
-        setFormData(deck);
-      }, [deck]);
-    
-    const handleFormChange = (event) => {
-        setFormData({
-            ...formData,
-            [event.target.name]: event.target.value,
-        })
-    }
-
-    const handleFormSubmit = (event) => {
-        event.preventDefault();
-        const abortController = new AbortController();
-        createCard(deck.id, {formData}, abortController.signal)
-        setFormData({...initialFormState})
-        
-        
-    }
 
     return (
         <form onSubmit={handleFormSubmit}>
@@ -42,24 +23,24 @@ function CardForm({deck}) {
                     Front
                     <textarea
                     id="front"
-                    name="front"
+                    className="front"
                     type="text"
-                    onChange={handleFormChange}
-                    value={formData.front}
+                    onChange={handleFrontChange}
+                    value={front}
                     />
                 </td>
                 <td htmlFor="back">
                     Back
                     <textarea
                      id="back"
-                     name="back"
+                     className="back"
                      type="text"
-                     onChange={handleFormChange}
-                     value={formData.back}
+                     onChange={handleBackChange}
+                     value={back}
                      />
                 </td>
             </table>
-            <Link to={`/decks/${deck.id}`}><button OnClick={handleHomeClick}>Done</button></Link>
+            <button onClick= {() => history.push(`/decks/${deck.id}`)}>Done</button>
             <button type="submit">Save</button>
         </form>
     )
