@@ -34,6 +34,13 @@ function EditCard() {
         return () => abortController.abort();
     }, [cardId]);
 
+    const handleChange = ({target}) => {
+        setCard({
+            ...card,
+            [target.name]: target.value,
+        });
+    };
+
     const handleFormSubmit = async (event) => {
         event.preventDefault();
         console.log('Save button clicked');
@@ -51,6 +58,7 @@ function EditCard() {
                   back={back}
                   setFront={setFront}
                   setBack={setBack}
+                  handleChange={handleChange}
                   handleFormSubmit={handleFormSubmit} />
         </>
 

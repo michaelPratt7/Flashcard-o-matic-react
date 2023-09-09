@@ -8,41 +8,38 @@ function CardForm({
     setFront,
     back,
     setBack,
+    handleChange,
     handleFormSubmit,
 }) {
 
     const history = useHistory();
 
-    const handleFrontChange = ({target}) => setFront(target.value);
-    const handleBackChange = ({target}) => setBack(target.value);
-
-
     return (
         <form onSubmit={handleFormSubmit}>
-            <table>
-                <td htmlFor="front">
+            <div>
+                <div htmlFor="front">
                     Front
                     <textarea
                     id="front"
-                    className="front"
+                    name="front"
                     type="text"
-                    onChange={handleFrontChange}
+                    onChange={handleChange}
                     value={card.front}
                     />
-                </td>
-                <td htmlFor="back">
+                </div>
+                <div htmlFor="back">
                     Back
                     <textarea
                      id="back"
-                     className="back"
+                     name="back"
                      type="text"
-                     onChange={handleBackChange}
+                     onChange={handleChange}
                      value={card.back}
                      />
-                </td>
-            </table>
+                </div>
+            </div>
             <button onClick= {() => history.push(`/decks/${deck.id}`)}>Done</button>
-            <button type="submit">Save</button>
+            <button type="submit" onSubmit={handleFormSubmit}>Save</button>
         </form>
     )
 }

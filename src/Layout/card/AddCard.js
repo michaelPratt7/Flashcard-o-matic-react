@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import {useParams} from "react-router-dom";
+import {useParams, useHistory} from "react-router-dom";
 import AddCardBread from "../breadcrumbs/AddCardBread";
 import { readDeck, createCard } from "../../utils/api";
 import CardForm from "./CardForm";
@@ -11,6 +11,7 @@ function AddCard() {
     const [back, setBack] = useState("");
     const [card, setCard] = useState({front:"", back:"",});
     const {deckId} = useParams();
+    const history = useHistory();
     
     useEffect(() => {
         const abortController = new AbortController();
@@ -22,11 +23,19 @@ function AddCard() {
         return () => abortController.abort();
     }, [deckId]);
 
+    const handleChange = ({target}) => {
+        setCard({
+            ...card,
+            [target.name]: target.value,
+        });
+    };
+
     const handleFormSubmit = async (event) => {
         event.preventDefault();
         await createCard(deckId, card);
         setFront("");
         setBack("");
+        history.push(`/decks/${deck.id}`);
       };
 
 
@@ -40,6 +49,7 @@ return (
                   back={back}
                   setFront={setFront}
                   setBack={setBack}
+                  handleChange={handleChange}
                   handleFormSubmit={handleFormSubmit} />
     </section>
 )
