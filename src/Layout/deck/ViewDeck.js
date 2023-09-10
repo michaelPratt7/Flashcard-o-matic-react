@@ -36,7 +36,7 @@ return (
         <Link to={`/decks/${deckId}/edit`}><EditDeckButton /></Link>
         <Link to={`/decks/${deckId}/study`}><StudyDeckButton /></Link>
         <Link to={`/decks/${deckId}/cards/new`}><AddCardButton /></Link>
-        <DeleteDeckButton />
+        <DeleteDeckButton deck={deck} />
     </div>
     <div className="cards">
         <h1>Cards</h1>
