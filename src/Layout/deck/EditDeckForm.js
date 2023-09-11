@@ -26,7 +26,7 @@ function EditDeckForm({deck}) {
     const handleFormSubmit = (event) => {
         event.preventDefault();
         updateDeck(formData)
-        history.go(0);
+        history.push(`/decks/${deck.id}`);
         
     }
 
