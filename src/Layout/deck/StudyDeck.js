@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from "react";
-import {useParams, useHistory} from "react-router-dom";
+import {useParams, useHistory, Link} from "react-router-dom";
 import StudyBread from "../breadcrumbs/StudyBread";
 import {readDeck} from "../../utils/api";
 import StudyCard from "../card/StudyCard";
-import AddCardButton from "../card/AddCardButton";
+
 
 function StudyDeck() {
    const [deck, setDeck] = useState([]);
@@ -61,7 +61,7 @@ return (
            {deckLength <= 2 && <>
            <h1>Not enough cards</h1> 
            <p>You need at least 3 cards to study. There are {deckLength} cards in this deck.</p>
-           <AddCardButton />
+           <Link to={`/decks/${deckId}/cards/new`}><button>Add Cards</button></Link>
            </>}
            </div>
            

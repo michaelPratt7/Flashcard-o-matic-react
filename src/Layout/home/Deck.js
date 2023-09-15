@@ -1,7 +1,5 @@
 import React from "react";
 import {Link, useHistory} from "react-router-dom";
-import StudyDeckButton from "./StudyDeckButton";
-import ViewDeckButton from "./ViewDeckButton";
 import {deleteDeck} from "../../utils/api";
 
 
@@ -23,8 +21,8 @@ export const Deck = ({deck}) =>{
             <h2>{deck.name}</h2>
             <p>{deck.cards.length} cards</p>
             <p>{deck.description}</p>
-            <Link to={`/decks/${deck.id}`}><ViewDeckButton /></Link>
-            <Link to={`/decks/${deck.id}/study`}><StudyDeckButton /></Link>
+            <Link to={`/decks/${deck.id}`}><button>View</button></Link>
+            <Link to={`/decks/${deck.id}/study`}><button>Study</button></Link>
             <button className="btn btn-danger" onClick={handleDelete}>
           Delete
         </button>
