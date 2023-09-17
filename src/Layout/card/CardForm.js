@@ -4,15 +4,18 @@ import {useHistory} from "react-router-dom";
 function CardForm({
     deck,
     card,
-    front,
-    setFront,
-    back,
-    setBack,
-    handleChange,
+    setCard,
     handleFormSubmit,
 }) {
 
     const history = useHistory();
+
+    const handleChange = (event) => {
+        setCard({
+            ...card,
+            [event.target.name]: event.target.value,
+        });
+    };
 
     return (
         <form onSubmit={handleFormSubmit}>

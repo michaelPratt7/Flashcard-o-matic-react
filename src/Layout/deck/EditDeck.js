@@ -10,15 +10,18 @@ function EditDeck() {
     
     useEffect(() => {
         const abortController = new AbortController();
-        readDeck(deckId, abortController.signal).then(setDeck);
-    
+        async function getDeck() {
+            const newDeck = await readDeck(deckId, abortController.signal);
+            setDeck(newDeck);
+        }
+        getDeck();
         return () => abortController.abort();
     }, [deckId]);
 
     return (
         <>
         <EditDeckBread deck={deck} />
-        <EditDeckForm deck={deck} />
+        <EditDeckForm deck={deck} setDeck={setDeck} />
         </>
     )
 }

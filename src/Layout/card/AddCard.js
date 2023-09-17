@@ -7,8 +7,6 @@ import CardForm from "./CardForm";
 
 function AddCard() { 
     const [deck, setDeck] = useState([]);
-    const [front, setFront] = useState("");
-    const [back, setBack] = useState("");
     const [card, setCard] = useState({front:"", back:"",});
     const {deckId} = useParams();
     const history = useHistory();
@@ -22,19 +20,12 @@ function AddCard() {
         fetchData();
         return () => abortController.abort();
     }, [deckId]);
-
-    const handleChange = ({target}) => {
-        setCard({
-            ...card,
-            [target.name]: target.value,
-        });
-    };
+ 
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
         await createCard(deckId, card);
-        setFront("");
-        setBack("");
+        setCard({});
         history.push(`/decks/${deck.id}`);
       };
 
@@ -45,11 +36,7 @@ return (
         <h1>{deck.name}: Add Card</h1>
         <CardForm deck={deck}
                   card={card}
-                  front={front}
-                  back={back}
-                  setFront={setFront}
-                  setBack={setBack}
-                  handleChange={handleChange}
+                  setCard={setCard}
                   handleFormSubmit={handleFormSubmit} />
     </section>
 )

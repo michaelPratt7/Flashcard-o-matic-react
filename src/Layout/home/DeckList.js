@@ -7,8 +7,11 @@ export const DeckList = () => {
 
 useEffect(() => {
     const abortController = new AbortController();
-    listDecks(abortController.signal).then(setDecks);
-
+    async function getDecks() {
+        const newDecks = await listDecks(abortController.signal);
+        setDecks(newDecks);
+    }
+    getDecks();
     return () => abortController.abort();
 }, []);
 

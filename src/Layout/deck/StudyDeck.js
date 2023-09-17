@@ -6,15 +6,13 @@ import StudyCard from "../card/StudyCard";
 
 
 function StudyDeck() {
-   const [deck, setDeck] = useState([]);
+   const [deck, setDeck] = useState({});
    const [card, setCard] = useState({});
    const [isFlipped, setIsFlipped] = useState(false);
    const [deckLength, setDeckLength] = useState(0);
    const [currentPos, setCurrentPos] = useState(1);
    const {deckId} = useParams();
    const history = useHistory();
-   
-
    
    useEffect(() => {
     const abortController = new AbortController();
@@ -31,7 +29,6 @@ function StudyDeck() {
 
 const FlipHandler = () => {
     setIsFlipped(!isFlipped)
-   
 }
 
 const NextCardHandler = () => {
@@ -57,16 +54,17 @@ return (
         <div>
            <p>Card {currentPos} of {deckLength}</p>
            <div className="cards"> 
-           {deckLength > 2 && <StudyCard card={card} isFlipped={isFlipped} FlipHandler={FlipHandler} NextCardHandler={NextCardHandler} />}
+           {deckLength > 2 && <StudyCard card={card}
+                                         isFlipped={isFlipped}
+                                         FlipHandler={FlipHandler}
+                                         NextCardHandler={NextCardHandler} />}
            {deckLength <= 2 && <>
            <h1>Not enough cards</h1> 
            <p>You need at least 3 cards to study. There are {deckLength} cards in this deck.</p>
            <Link to={`/decks/${deckId}/cards/new`}><button>Add Cards</button></Link>
            </>}
            </div>
-           
         </div>
-        
     </section>
 )
 }

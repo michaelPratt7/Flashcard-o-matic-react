@@ -1,33 +1,25 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 import {useHistory, Link} from "react-router-dom";
 import { updateDeck } from "../../utils/api";
 
 
-function EditDeckForm({deck}) { 
+function EditDeckForm({deck, setDeck}) { 
     const history = useHistory();
     function handleHomeClick() {
         history.push("/decks/:deckId");
     }
-
-
-    const [formData, setFormData] = useState(deck);
-
-    useEffect(() => {
-        setFormData(deck);
-      }, [deck]);
     
     const handleFormChange = (event) => {
-        setFormData({
-            ...formData,
+        setDeck({
+            ...deck,
             [event.target.name]: event.target.value,
         })
     }
 
     const handleFormSubmit = (event) => {
         event.preventDefault();
-        updateDeck(formData)
+        updateDeck(deck)
         history.push(`/decks/${deck.id}`);
-        
     }
 
     return (
@@ -40,7 +32,7 @@ function EditDeckForm({deck}) {
                     name="name"
                     type="text"
                     onChange={handleFormChange}
-                    value={formData.name}
+                    value={deck.name}
                     />
                 </td>
                 <td htmlFor="description">
@@ -50,7 +42,7 @@ function EditDeckForm({deck}) {
                      name="description"
                      type="text"
                      onChange={handleFormChange}
-                     value={formData.description}
+                     value={deck.description}
                      />
                 </td>
             </table>
