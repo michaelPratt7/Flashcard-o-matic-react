@@ -58,7 +58,8 @@ return (
                                          isFlipped={isFlipped}
                                          FlipHandler={FlipHandler}
                                          NextCardHandler={NextCardHandler} />}
-           {deckLength <= 2 && <>
+           {deckLength <= 2 && 
+           <>
            <h1>Not enough cards</h1> 
            <p>You need at least 3 cards to study. There are {deckLength} cards in this deck.</p>
            <Link to={`/decks/${deckId}/cards/new`}><button>Add Cards</button></Link>

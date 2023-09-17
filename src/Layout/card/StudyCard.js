@@ -8,8 +8,6 @@ function StudyCard({deck, card, isFlipped, FlipHandler, NextCardHandler, current
       {isFlipped && (<button onClick={NextCardHandler}>Next</button>)}
       </>
    )
-   
-    
 
 }
 

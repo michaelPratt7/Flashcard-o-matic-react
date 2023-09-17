@@ -13,7 +13,7 @@ function DeckForm() {
         description: "",
     }
 
-    const [formData, setFormData] = useState({...initialFormState});
+    const [formData, setFormData] = useState({initialFormState});
 
     const handleFormChange = (event) => {
         setFormData({
@@ -26,9 +26,7 @@ function DeckForm() {
         event.preventDefault();
         createDeck(formData).then((newDeck) =>
         history.push(`/decks/${newDeck.id}`))
-        setFormData({...initialFormState})
-    
-    
+        setFormData({initialFormState})
     }
 
     
